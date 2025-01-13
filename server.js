@@ -22,13 +22,16 @@ const server = Bun.serve({
     }),
   },
   async fetch(req) {
-    return new Response(
-      JSON.stringify(array[Math.floor(Math.random() * array.length)]),
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    let url = new URL(req.url);
+    if (url.pathname == "/quote")
+      return new Response(
+        JSON.stringify(array[Math.floor(Math.random() * array.length)]),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    else return Response.redirect("/index.html");
   },
 });
