@@ -1,3 +1,7 @@
+const file = await Bun.file("quotes.json");
+const json = await file.json();
+const array = json.quotes;
+
 const server = Bun.serve({
   port: 8080,
   static: {
@@ -16,12 +20,15 @@ const server = Bun.serve({
         "Content-Type": "text/javascript",
       },
     }),
-    "/quote": new Response(await fetch("https://zenquotes.io/api/random")),
   },
   async fetch(req) {
-    let url = new URL(req.url);
-    if (url.pathname == "/quote");
-    return await fetch("https://zenquotes.io/api/random");
+    return new Response(
+      JSON.stringify(array[Math.floor(Math.random() * array.length)]),
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   },
 });
-console.log(server.url);

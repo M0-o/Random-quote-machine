@@ -14,25 +14,29 @@ const bgColorChangingEl = document.querySelectorAll(".bg_color_change");
 
 const update = async function () {
   btn.disabled = true;
-  const quotePromise = await fetch("/");
+  const quotePromise = await fetch("/quote");
   let quote = await quotePromise.json();
-  quote = quote[0];
   const color = colorGen();
   setTimeout(function () {
-    quoteCtn.innerHTML = `<i class="fa-solid fa-quote-left icon"></i>  ${quote.q}`;
+    quoteCtn.innerHTML = `<i class="fa-solid fa-quote-left icon"></i>  ${quote.text}`;
   }, 300);
 
-  authorCtn.innerHTML = `- ${quote.a}`;
+  authorCtn.innerHTML = `- ${quote.author}`;
 
   colorChangingEl.forEach((el) => (el.style.color = color));
   bgColorChangingEl.forEach((el) => (el.style.backgroundColor = color));
+  card.classList.remove("fade-in");
+  quoteCtn.classList.remove("fade-out");
+  // Force reflow
+  void card.offsetWidth;
+  void quoteCtn.offsetWidth;
   card.classList.toggle("fade-in");
   quoteCtn.classList.toggle("fade-out");
   setTimeout(function () {
-    card.classList.toggle("fade-in");
-    quoteCtn.classList.toggle("fade-out");
-  }, 5);
-  btn.disabled = false;
+    card.classList.add("fade-in");
+    quoteCtn.classList.add("fade-out");
+    btn.disabled = false;
+  }, 100);
 };
 
 btn.addEventListener("click", update);
