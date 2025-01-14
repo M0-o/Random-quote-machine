@@ -103,7 +103,7 @@ Apply to:
 2. Start the server:
 
 ```bash
-bun run server.js
+bun run Server/server.js
 ```
 
 4. Open `http://localhost:8080` in your browser
