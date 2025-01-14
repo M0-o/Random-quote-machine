@@ -21,7 +21,7 @@ const update = async function () {
     quoteCtn.innerHTML = `<i class="fa-solid fa-quote-left icon"></i>  ${quote.text}`;
   }, 300);
 
-  authorCtn.innerHTML = `- ${quote.author}`;
+  authorCtn.innerHTML = `- ${quote.author == null ? "Unknown" : quote.author}`;
 
   colorChangingEl.forEach((el) => (el.style.color = color));
   bgColorChangingEl.forEach((el) => (el.style.backgroundColor = color));
