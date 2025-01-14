@@ -21,11 +21,14 @@ A dynamic web application that displays random inspirational quotes with smooth 
 
 ```
 Random quote machine/
-├── index.html
-├── styles.css
-├── script.js
-├── server.js
-└── quotes.json
+├── Client/
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+├── Server/
+│   ├── server.js
+│   └── quotes.json
+└── README.md
 ```
 
 ## Core Application Logic

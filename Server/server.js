@@ -1,21 +1,22 @@
-const file = await Bun.file("quotes.json");
+const file = await Bun.file("Server/quotes.json");
 const json = await file.json();
 const array = json.quotes;
+
 
 const server = Bun.serve({
   port: 8080,
   static: {
-    "/index.html": new Response(await Bun.file("index.html").bytes(), {
+    "/index.html": new Response(await Bun.file("Client/index.html").bytes(), {
       headers: {
         "Content-Type": "text/html",
       },
     }),
-    "/styles.css": new Response(await Bun.file("styles.css").bytes(), {
+    "/styles.css": new Response(await Bun.file("Client/styles.css").bytes(), {
       headers: {
         "Content-Type": "text/css",
       },
     }),
-    "/script.js": new Response(await Bun.file("script.js").bytes(), {
+    "/script.js": new Response(await Bun.file("Client/script.js").bytes(), {
       headers: {
         "Content-Type": "text/javascript",
       },
